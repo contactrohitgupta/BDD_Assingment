@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using BDDCore;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+
+using RestSharp;
+using System.Web.Script.Serialization;
 
 namespace BDDPageObject
 {
@@ -21,23 +22,13 @@ namespace BDDPageObject
             try
             {
                 //Making a Post call
-                string strResponseContent = RestApiUtil.ExecuteMethodCall(RestApiUtil.Methods.POST, "https://reqres.in/api/register", strBody);
+                IRestResponse strResponse = RestApiUtil.ExecuteMethodCall(RestApiUtil.Methods.POST, "https://reqres.in/api/register", strBody);
 
                 //converting the Json object
-                JObject objContent = JObject.Parse(strResponseContent);
-
-                //Converting from Json Object to class object.
-                //IList<JToken> results = objContent["Data"].Children().ToList();
-                //IList<JToken> users = results[0].Children().ToList();
-
-                //JToken.ToObject is a helper method that uses JsonSerializer internally
-                Registration regist = new Registration();
-                //user.data = users[0].ToObject<Users>();
-                regist.ResponseMessage = objContent["ResponseMessage"].ToString();
-                regist.ResponseCode = objContent["ResponseCode"].ToString();
-                regist.id =Convert.ToInt32( objContent["id"].ToString());
-                regist.token = objContent["token"].ToString();
-                regist.error = objContent["error"].ToString();
+                Registration regist = Newtonsoft.Json.JsonConvert.DeserializeObject<Registration>(strResponse.Content);
+                regist.ResponseMessage = strResponse.StatusDescription.ToString();
+                regist.ResponseCode = strResponse.StatusCode.ToString();
+                
                 return regist;
             }
             catch (Exception ex)

@@ -13,31 +13,31 @@ namespace BDD_Test
         [Test]
         public void GetUsers()
         {
-            Users users = RestApiPageFactory.User.MakeGetCall();
+            RootObject users = RestApiPageFactory.User.MakeGetCall();
 
-            Assert.AreEqual("Retrieved Invoice Details Successfully", users.ResponseMessage);
-            Assert.AreEqual("200", users.ResponseCode);
+            Assert.AreEqual("OK", users.ResponseMessage);
+            Assert.AreEqual("OK", users.ResponseCode);
             
         }
         [Test]
         public void Register()
         {
-            string strBody = "{" + "email" + ":" + "eve.holt@reqres.in" + "," + "password" + ":" + "pistol" + "}";
+            string strBody = "{\"email\":\"eve.holt@reqres.in\",\"password\":\"pistol\"}";
+           
             Registration register = RestApiPageFactory.Register.MakePostCall(strBody);
 
-            Assert.AreEqual("200", register.ResponseCode);
+            Assert.AreEqual("OK", register.ResponseCode);
             Assert.IsNotEmpty(register.token);
-            Assert.IsEmpty(register.error);
+            Assert.IsNull(register.error);
 
         }
         [Test]
         public void UnRegister()
         {
-            string strBody = "{" + "email" + ":" + "eve.holt@reqres.in"+ "}";
+            string strBody = "{\"email\":\"eve.holt@reqres.in\"}";
             Registration register = RestApiPageFactory.Register.MakePostCall(strBody);
 
-            Assert.AreEqual("400", register.ResponseCode);
-            Assert.IsEmpty(register.token);
+            Assert.AreEqual("BadRequest", register.ResponseCode);
             Assert.AreEqual(register.error, "Missing password");
 
         }

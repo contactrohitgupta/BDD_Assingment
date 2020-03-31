@@ -19,9 +19,9 @@ namespace BDDPageObject
 
             return page;
         }
-        public static Users User
+        public static RootObject User
         {
-            get { return GetPage<Users>(); }
+            get { return GetPage<RootObject>(); }
         }
 
         public static Registration Register

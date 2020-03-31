@@ -1,7 +1,0 @@
-<Project>
-
-  <ItemGroup>
-    <ProjectCapability Include="TestContainer" />
-  </ItemGroup>
-
-</Project>

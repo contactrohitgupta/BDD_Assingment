@@ -99,7 +99,7 @@ namespace BDDCore
             }
         }
 
-        public static string ExecuteMethodCall(Methods strMethod, string strURL,string strBody=null)
+        public static IRestResponse ExecuteMethodCall(Methods strMethod, string strURL,string strBody=null)
         {
             try
             {
@@ -123,7 +123,7 @@ namespace BDDCore
                         request = new RestRequest(Method.DELETE);
                         break;
                 }
-
+               
                 //Adding Body
                 if (!string.IsNullOrEmpty(strBody))
                     request.AddJsonBody(strBody.ToString());
@@ -133,7 +133,7 @@ namespace BDDCore
                 if (response.Content.Contains("500 - Internal server error."))
                     response = client.Execute(request);
 
-                return response.Content;
+                return response;
             }
             catch (Exception ex)
             {
