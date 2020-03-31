@@ -50,3 +50,5 @@ D:\Assingment_BDD\BDDWithSpecflow\BDD_Test\bin\Debug\Newtonsoft.Json.xml
 D:\Assingment_BDD\BDDWithSpecflow\BDD_Test\obj\Debug\BDD_Test.csprojResolveAssemblyReference.cache
 D:\Assingment_BDD\BDDWithSpecflow\BDD_Test\obj\Debug\BDD_Test.dll
 D:\Assingment_BDD\BDDWithSpecflow\BDD_Test\obj\Debug\BDD_Test.pdb
+D:\BDD_Assingment\BDD_Assingment\BDD_Test\obj\Debug\BDD_Test.dll
+D:\BDD_Assingment\BDD_Assingment\BDD_Test\obj\Debug\BDD_Test.pdb
