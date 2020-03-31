@@ -8,7 +8,9 @@ namespace BDDPageObject
     {
         private static T GetPage<T>() where T : new()
         {
+
             var page = new T();
+            BrowserFactory.InitBrowser(BrowserFactory.Browser.Chrome);
             RetryingElementLocator retry = new RetryingElementLocator(BrowserFactory.Driver, TimeSpan.FromSeconds(10));
             //IPageObjectMemberDecorator decor = new DefaultPageObjectMemberDecorator();
             //PageFactory.InitElements(retry.SearchContext, page, decor);

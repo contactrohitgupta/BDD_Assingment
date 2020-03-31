@@ -27,7 +27,7 @@ namespace BDDPageObject
         public IWebElement Password { get; set; }
 
 
-        [FindsBy(How = How.Id, Using = "lbLoginErrMsg")]
+        [FindsBy(How = How.XPath, Using = "//div[contains(@class, 'alert alert-danger')]/ol/li")]
         [CacheLookup]
         public IWebElement LoginError { get; set; }
 
@@ -46,7 +46,7 @@ namespace BDDPageObject
         {
             try
             {
-                BrowserFactory.InitBrowser(BrowserFactory.Browser.Chrome);
+                
                 BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["AppUrl"].ToString());
                 SignIn.Click();
                 Element_Extensions.AddExpleciteWait(100);

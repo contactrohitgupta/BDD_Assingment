@@ -11,6 +11,7 @@ namespace BDD_Test
         [Given(@"I have navigated to login page")]
         public void GivenIHaveNavigatedToLoginPage()
         {
+            
             Page.Login.LoadApplication();
         }
 
