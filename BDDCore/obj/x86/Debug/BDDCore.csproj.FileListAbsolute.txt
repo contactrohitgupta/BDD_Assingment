@@ -1,0 +1,12 @@
+D:\BDD_Assingment\BDD_Assingment\BDDCore\bin\x86\Debug\BDDCore.dll
+D:\BDD_Assingment\BDD_Assingment\BDDCore\bin\x86\Debug\BDDCore.pdb
+D:\BDD_Assingment\BDD_Assingment\BDDCore\bin\x86\Debug\Newtonsoft.Json.dll
+D:\BDD_Assingment\BDD_Assingment\BDDCore\bin\x86\Debug\RestSharp.dll
+D:\BDD_Assingment\BDD_Assingment\BDDCore\bin\x86\Debug\WebDriver.dll
+D:\BDD_Assingment\BDD_Assingment\BDDCore\bin\x86\Debug\WebDriver.Support.dll
+D:\BDD_Assingment\BDD_Assingment\BDDCore\bin\x86\Debug\Newtonsoft.Json.xml
+D:\BDD_Assingment\BDD_Assingment\BDDCore\bin\x86\Debug\RestSharp.xml
+D:\BDD_Assingment\BDD_Assingment\BDDCore\bin\x86\Debug\WebDriver.xml
+D:\BDD_Assingment\BDD_Assingment\BDDCore\bin\x86\Debug\WebDriver.Support.xml
+D:\BDD_Assingment\BDD_Assingment\BDDCore\obj\x86\Debug\BDDCore.dll
+D:\BDD_Assingment\BDD_Assingment\BDDCore\obj\x86\Debug\BDDCore.pdb

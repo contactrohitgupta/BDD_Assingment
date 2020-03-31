@@ -3,7 +3,7 @@ using BDDPageObject;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
-namespace BDD_Test.Steps
+namespace BDD_Test
 {
     [Binding]
     public class LoginWithoutCredentialsSteps

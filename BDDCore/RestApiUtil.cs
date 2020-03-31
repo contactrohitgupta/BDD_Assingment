@@ -99,6 +99,49 @@ namespace BDDCore
             }
         }
 
+        public static string ExecuteMethodCall(Methods strMethod, string strURL,string strBody=null)
+        {
+            try
+            {
+                RestClient client = null;
+                    client = new RestClient(strURL);
+
+                RestRequest request = null;
+                // client.Authenticator = new HttpBasicAuthenticator(username, password);
+                switch (strMethod)
+                {
+                    case Methods.GET:
+                        request = new RestRequest(Method.GET);
+                        break;
+                    case Methods.POST:
+                        request = new RestRequest(Method.POST);
+                        break;
+                    case Methods.PUT:
+                        request = new RestRequest(Method.PUT);
+                        break;
+                    case Methods.DELETE:
+                        request = new RestRequest(Method.DELETE);
+                        break;
+                }
+
+                //Adding Body
+                if (!string.IsNullOrEmpty(strBody))
+                    request.AddJsonBody(strBody.ToString());
+
+                // execute the requestd
+                IRestResponse response = client.Execute(request);
+                if (response.Content.Contains("500 - Internal server error."))
+                    response = client.Execute(request);
+
+                return response.Content;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         public static List<T> ExecuteMethodCall<T>(Methods strMethod, DataTable dtCallDetails)
         {
             try
