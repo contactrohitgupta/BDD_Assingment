@@ -4,6 +4,7 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace BDDCore
 {
@@ -83,7 +84,27 @@ namespace BDDCore
                 throw(ex);;
             }
         }
+        public static Boolean SwitchWindow(string title)
+        {
+            var currentWindow = driver.CurrentWindowHandle;
+            var availableWindows = new List<string>(driver.WindowHandles);
 
+            foreach (string w in availableWindows)
+            {
+                if (w != currentWindow)
+                {
+                    driver.SwitchTo().Window(w);
+                    if (driver.Title == title)
+                        return true;
+                    else
+                    {
+                        driver.SwitchTo().Window(currentWindow);
+                    }
+
+                }
+            }
+            return false;
+        }
         public static void CloseAllDrivers()
         {
             try

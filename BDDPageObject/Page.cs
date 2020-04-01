@@ -23,6 +23,10 @@ namespace BDDPageObject
         {
             get { return GetPage<LoginPage>(); }
         }
+        public static SearchFlights Search
+        {
+            get { return GetPage<SearchFlights>(); }
+        }
     }
 }
 
