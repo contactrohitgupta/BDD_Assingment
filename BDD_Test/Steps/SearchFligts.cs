@@ -130,11 +130,12 @@ namespace BDD_Test
         [Then(@"the total amount must be one person amount multiply by four")]
         public void ThenTheTotalAmountMustBeOnePersonAmountMultiplyByfour()
         {
-            string str = Page.Search.TotalPrice.Text;
             double onePersonExpense = Convert.ToDouble(Page.Search.OnePersonPrice.Text.Remove(0,1));
             double fourPersonExpense = Convert.ToDouble(Page.Search.TotalPrice.Text.Remove(0,1));
 
             Assert.AreEqual(fourPersonExpense, onePersonExpense * 4);
+
+            Page.Login.CloseApplication();
         }
     }
 }
