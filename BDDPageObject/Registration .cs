@@ -17,12 +17,12 @@ namespace BDDPageObject
         public string ResponseMessage { get; set; }
         public string ResponseCode { get; set; }
 
-        public Registration MakePostCall(String strBody)
+        public Registration MakePostCall(String strURL,String strBody)
         {
             try
             {
                 //Making a Post call
-                IRestResponse strResponse = RestApiUtil.ExecuteMethodCall(RestApiUtil.Methods.POST, "https://reqres.in/api/register", strBody);
+                IRestResponse strResponse = RestApiUtil.ExecuteMethodCall(RestApiUtil.Methods.POST, strURL, strBody);
 
                 //converting the Json object
                 Registration regist = Newtonsoft.Json.JsonConvert.DeserializeObject<Registration>(strResponse.Content);

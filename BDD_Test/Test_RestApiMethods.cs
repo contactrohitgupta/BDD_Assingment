@@ -1,10 +1,9 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using NUnit.Framework;
 using BDDPageObject;
+using System.Configuration;
+using System.Data;
+using System.Data.OleDb;
 
 namespace BDD_Test
 {
@@ -13,33 +12,34 @@ namespace BDD_Test
         [Test]
         public void GetUsers()
         {
-            RootObject users = RestApiPageFactory.User.MakeGetCall();
+            DataTable dtUser = CommonMethods.GetDataFromExcelSheet("select * from [User$]");
 
-            Assert.AreEqual("OK", users.ResponseMessage);
-            Assert.AreEqual("OK", users.ResponseCode);
-            
+            RootObject users = RestApiPageFactory.User.MakeGetCall(dtUser.Rows[0]["URL"].ToString());
+
+            Assert.AreEqual(dtUser.Rows[0]["ResponseMessage"].ToString(), users.ResponseMessage);
+            Assert.AreEqual(dtUser.Rows[0]["ResponseCode"].ToString(), users.ResponseCode);
+            Assert.Greater(users.data.Count,0);
         }
         [Test]
         public void Register()
         {
-            string strBody = "{\"email\":\"eve.holt@reqres.in\",\"password\":\"pistol\"}";
-           
-            Registration register = RestApiPageFactory.Register.MakePostCall(strBody);
+            DataTable dtRegister = CommonMethods.GetDataFromExcelSheet("select * from [Register$]");
 
-            Assert.AreEqual("OK", register.ResponseCode);
+            Registration register = RestApiPageFactory.Register.MakePostCall(dtRegister.Rows[0]["URL"].ToString(), dtRegister.Rows[0]["Body"].ToString());
+            Assert.AreEqual(dtRegister.Rows[0]["ResponseCode"].ToString(), register.ResponseCode);
             Assert.IsNotEmpty(register.token);
             Assert.IsNull(register.error);
-
         }
+
         [Test]
         public void UnRegister()
         {
-            string strBody = "{\"email\":\"eve.holt@reqres.in\"}";
-            Registration register = RestApiPageFactory.Register.MakePostCall(strBody);
+            DataTable dtUnRegister = CommonMethods.GetDataFromExcelSheet("select * from [Register$]");
 
-            Assert.AreEqual("BadRequest", register.ResponseCode);
-            Assert.AreEqual(register.error, "Missing password");
+            Registration register = RestApiPageFactory.Register.MakePostCall(dtUnRegister.Rows[1]["URL"].ToString(), dtUnRegister.Rows[1]["Body"].ToString());
 
+            Assert.AreEqual(dtUnRegister.Rows[1]["ResponseCode"].ToString(), register.ResponseCode);
+            Assert.AreEqual(register.error, dtUnRegister.Rows[1]["Error"].ToString());
         }
     }
 }

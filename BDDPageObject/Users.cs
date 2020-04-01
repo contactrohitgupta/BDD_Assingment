@@ -38,12 +38,12 @@ namespace BDDPageObject
         public string ResponseMessage { get; set; }
         public string ResponseCode { get; set; }
         
-        public RootObject MakeGetCall()
+        public RootObject MakeGetCall(string strUrl)
         {
             try
             {
                 //Making a Get call
-                IRestResponse strResponse = RestApiUtil.ExecuteMethodCall(RestApiUtil.Methods.GET, "https://reqres.in/api/users", null);
+                IRestResponse strResponse = RestApiUtil.ExecuteMethodCall(RestApiUtil.Methods.GET, strUrl, null);
 
                 //Converting from Json Object to class object.
                 RootObject user = Newtonsoft.Json.JsonConvert.DeserializeObject<RootObject>(strResponse.Content);

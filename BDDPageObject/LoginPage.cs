@@ -130,6 +130,9 @@ namespace BDDPageObject
             }
         }
 
-        
+        public void CloseApplication()
+        {
+            BrowserFactory.CloseAllDrivers();
+        }
     }
 }
